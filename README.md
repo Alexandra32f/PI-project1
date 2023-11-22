@@ -7,9 +7,15 @@
 Для того чтобы запустить файл Чат_бот_1_stramlit.py нужно установить следующие библиотеки и модули:
 
 1. streamlit
-pip install streamlit (win10/Ubuntu 22.04)
+
+  pip install streamlit (win10/Ubuntu 22.04)
+
 2. transformers
-pip install transformers (win10/Ubuntu 22.04)
+
+  pip install transformers (win10/Ubuntu 22.04)
+
 3. PyTorch
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu (Ubuntu 22.04)
-pip3 install torch torchvision torchaudio (win10)
+
+  pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu (Ubuntu 22.04)
+  
+  pip3 install torch torchvision torchaudio (win10)
