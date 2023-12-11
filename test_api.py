@@ -10,18 +10,17 @@ from api import app
 
 client = TestClient(app)
 
-
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+    assert response.json() == {"message": "Hello, World!"}
 
-
-def test_predict_positive():
-    response = client.post("/predict/",
-                           json={"text": "I like machine learning!"})
-    json_data = response.json()
+def test_predict():
+    response = client.get("/predict/")
     assert response.status_code == 200
-    assert json_data['label'] == 'score'
+    assert response.json() == {
+        "context": "The Universe contains everything that exists – not only the Earth and everything on it,but also all the planets, stars, and galaxies, and the space in between them. The sun, at the center of the solar system, is just one of about 100 billion stars in our galaxy, or collection of stars, called the Milky Way. Astronomers have estimated that there are about 100 billion other galaxies in the universe. Most scientists think that the universe formed about 15 billion years ago in an enormous explosion called the big bang.They also think that the universe is expanding.",
+        "question": "What is at the center of the solar system?",
+    }
 
     
