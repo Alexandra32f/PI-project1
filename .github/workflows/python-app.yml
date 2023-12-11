@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "chat-bot_attempt_1" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "chat-bot_attempt_1" ]
 
 permissions:
   contents: read
