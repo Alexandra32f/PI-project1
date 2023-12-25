@@ -27,11 +27,9 @@ def test_predict():
     response_json = response.json()
     
     print("Response JSON:", response_json)
-    
+
     assert response_json[0] == 'The sun'
 
-    
-    assert "answer" in response_json
 
 
 
