@@ -25,8 +25,11 @@ def test_predict():
     assert response.status_code == 200
     
     response_json = response.json()
-
+    
     print("Response JSON:", response_json)
+    
+    assert response_json[0] == 'The sun'
+
     
     assert "answer" in response_json
 
