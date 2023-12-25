@@ -18,7 +18,8 @@ def test_read_main():
     assert response.json() == {"message": "Hello, World!"}
 
 def test_predict():
-    item = Item(context="The Universe contains everything that exists – not only the Earth and everything on it,but also all the planets, stars, and galaxies, and the space in between them. The sun, at the center of the solar system, is just one of about 100 billion stars in our galaxy, or collection of stars, called the Milky Way. Astronomers have estimated that there are about 100 billion other galaxies in the universe. Most scientists think that the universe formed about 15 billion years ago in an enormous explosion called the big bang.They also think that the universe is expanding.", question="What is at the center of the solar system?")
+    item = Item(context="The Universe contains everything that exists – not only the Earth and everything on it, but also all the planets, stars, and galaxies, and the space in between them. The sun, at the center of the solar system, is just one of about 100 billion stars in our galaxy, or collection of stars, called the Milky Way. Astronomers have estimated that there are about 100 billion other galaxies in the universe. Most scientists think that the universe formed about 15 billion years ago in an enormous explosion called the big bang. They also think that the universe is expanding.", question="What is at the center of the solar system?")
+    
     response = client.post("/predict/", json=item.dict())
     
     assert response.status_code == 200
@@ -26,16 +27,14 @@ def test_predict():
     response_json = response.json()
     
     assert "answer" in response_json
-    assert "score" in response_json
-
-    answer = response_json["answer"][0] 
-    score = response_json["answer"][1]
+    assert isinstance(response_json["answer"], list) and response_json["answer"]
     
-    assert response_json["answer"] != ""
+    answer_text = response_json["answer"][0]
+    
+    assert answer_text.strip() != ""
+    
+    score = response_json["answer"][1]
 
+    assert 0 <= score <= 1
 
-
-    item = Item(context="The Universe contains everything that exists – not only the Earth and everything on it,but also all the planets, stars, and galaxies, and the space in between them. The sun, at the center of the solar system, is just one of about 100 billion stars in our galaxy, or collection of stars, called the Milky Way. Astronomers have estimated that there are about 100 billion other galaxies in the universe. Most scientists think that the universe formed about 15 billion years ago in an enormous explosion called the big bang.They also think that the universe is expanding.", question="What is at the center of the solar system?")
-    response = client.post("/predict/", json=item.dict())
-    assert response.status_code == 500  # HTTP 500 Internal Server Error
 
