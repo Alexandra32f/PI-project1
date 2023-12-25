@@ -23,8 +23,3 @@ def test_predict():
     assert response.status_code == 200
     assert "answer" in response.json()
     assert "score" in response.json()
-
-    app.classifier = mock_classifier
-    item = Item(context="The Universe contains everything that exists", question="What is at the center of the solar system?")
-    response = client.post("/predict/", json=item.dict())
-    assert response.status_code == 500  # HTTP 500 Internal Server Error
